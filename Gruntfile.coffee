@@ -38,7 +38,8 @@ module.exports = (grunt) ->
           'public/chosen.proto.js': ['coffee/lib/select-parser.coffee', 'coffee/lib/abstract-chosen.coffee', 'coffee/chosen.proto.coffee']
       spec:
         files:
-          'spec/chosen-spec.js': 'spec/chosen-spec.coffee'
+          'spec/chosen-jquery-spec.js': 'spec/chosen-jquery-spec.coffee'
+          'spec/chosen-proto-spec.js': 'spec/chosen-proto-spec.coffee'
 
     uglify:
       options:
@@ -101,7 +102,12 @@ module.exports = (grunt) ->
         src: [ 'public/chosen.jquery.js' ]
         options:
           vendor: [ 'http://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js' ]
-          specs: 'spec/*.js'
+          specs: 'spec/chosen-jquery-spec.js'
+      proto:
+        src: [ 'public/chosen.proto.js' ]
+        options:
+          vendor: [ 'https://ajax.googleapis.com/ajax/libs/prototype/1.7.0.0/prototype.js' ]
+          specs: 'spec/chosen-proto-spec.js'
 
   grunt.loadNpmTasks 'grunt-contrib-coffee'
   grunt.loadNpmTasks 'grunt-contrib-uglify'
