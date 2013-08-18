@@ -78,6 +78,7 @@ module.exports = (grunt) ->
     clean:
       dist: ["dist/"]
       chosen_zip: ["*.zip"]
+      spec: ["spec/*.js"]
 
     build_gh_pages:
       gh_pages: {}
@@ -119,7 +120,7 @@ module.exports = (grunt) ->
   grunt.registerTask 'build', ['coffee:compile', 'compass', 'concat', 'uglify', 'cssmin']
   grunt.registerTask 'gh_pages', ['copy:dist', 'build_gh_pages:gh_pages']
   grunt.registerTask 'prep_release', ['build','zip:chosen','package_jquery']
-  grunt.registerTask 'test',  ['coffee', 'jasmine']
+  grunt.registerTask 'test',  ['coffee', 'jasmine', 'clean:spec']
 
   grunt.registerTask 'package_jquery', 'Generate a jquery.json manifest file from package.json', () ->
     src = "package.json"
